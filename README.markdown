@@ -1,7 +1,12 @@
 AutoPy Introduction and Tutorial
 =================================
 
-by Michael Sanders
+Modified by Michael Wei:
+
+Add typeStringIncludeSpecialKey() in keypress.c so that it can support type special characters, for example: ~!@#$%^&*()_+ in autopy.key.type_string().
+
+
+Author by Michael Sanders
 
 ## Outline
 

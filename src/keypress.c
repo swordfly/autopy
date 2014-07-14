@@ -27,6 +27,9 @@
 		 microsleep(DEADBEEF_UNIFORM(0.0, 62.5)))
 #endif
 
+char SpecialChar[] = {'~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?'};
+const specialCharacterCount = sizeof(SpecialChar);
+
 void toggleKeyCode(MMKeyCode code, const bool down, MMKeyFlags flags)
 {
 #if defined(IS_MACOSX)
@@ -113,10 +116,31 @@ static void tapUniKey(char c)
 	toggleUniKey(c, false);
 }
 
+//Michael Wei: Add this function so that typeString() & typeStringDelayed() support special characters. 2014-5-7
+static void typeStringIncludeSpecialKey(char c)
+{
+	int i, is_special_char = 0;
+	//char c = *str++;	
+	for (i = 0; i < specialCharacterCount; ++i) 
+	{
+		if (c == SpecialChar[i]) {
+			is_special_char = 1;
+			break;
+		}
+	}		
+	if (is_special_char == 1){		
+		tapKey(c, MOD_SHIFT);
+	}
+	else{
+		tapUniKey(c);
+	}
+}
+
 void typeString(const char *str)
 {
-	while (*str != '\0') {
-		tapUniKey(*str++);
+	while (*str != '\0') {	
+		//tapUniKey(*str++);
+		typeStringIncludeSpecialKey(*str++);			
 	}
 }
 
@@ -129,7 +153,8 @@ void typeStringDelayed(const char *str, const unsigned cpm)
 	const double mspc = (cps == 0.0) ? 0.0 : 1000.0 / cps;
 
 	while (*str != '\0') {
-		tapUniKey(*str++);
+		//tapUniKey(*str++);
+		typeStringIncludeSpecialKey(*str++);
 		microsleep(mspc + (DEADBEEF_UNIFORM(0.0, 62.5)));
 	}
 }
