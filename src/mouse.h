@@ -27,7 +27,9 @@
 	enum _MMMouseButton {
 		LEFT_BUTTON = 1,
 		CENTER_BUTTON = 2,
-		RIGHT_BUTTON = 3
+		RIGHT_BUTTON = 3,
+                SCROLLUP_BUTTON = 4,
+                SCROLLDOWN_BUTTON = 5
 	};
 	typedef unsigned int MMMouseButton;
 
@@ -36,7 +38,9 @@
 	enum _MMMouseButton {
 		LEFT_BUTTON = 1,
 		CENTER_BUTTON = 2,
-		RIGHT_BUTTON = 3
+		RIGHT_BUTTON = 3,
+                SCROLLUP_BUTTON = 4,
+                SCROLLDOWN_BUTTON = 5
 	};
 	typedef unsigned int MMMouseButton;
 
@@ -46,7 +50,8 @@
 
 #define MMMouseButtonIsValid(button) \
 	(button == LEFT_BUTTON || button == RIGHT_BUTTON || \
-	 button == CENTER_BUTTON)
+	 button == CENTER_BUTTON || button == SCROLLUP_BUTTON || \
+         button == SCROLLDOWN_BUTTON)
 
 /* Immediately moves the mouse to the given point on-screen.
  * It is up to the caller to ensure that this point is within the

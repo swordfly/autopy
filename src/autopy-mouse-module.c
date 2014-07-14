@@ -68,7 +68,9 @@ PyMODINIT_FUNC initmouse(void)
 	/* Add mouse button constants for click_mouse(). */
 	if (PyModule_AddIntMacro(mod, LEFT_BUTTON) < 0 ||
 		PyModule_AddIntMacro(mod, RIGHT_BUTTON) < 0 ||
-		PyModule_AddIntMacro(mod, CENTER_BUTTON) < 0) {
+		PyModule_AddIntMacro(mod, CENTER_BUTTON) < 0 ||
+                PyModule_AddIntMacro(mod, SCROLLUP_BUTTON) < 0 ||
+                PyModule_AddIntMacro(mod, SCROLLDOWN_BUTTON) < 0) {
 		PyErr_SetString(PyExc_ValueError, "Error adding constants to mouse module");
 		return;
 	}
